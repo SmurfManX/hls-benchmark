@@ -48,29 +48,6 @@ docker run --rm -it --network=host --name sb \
 
 > Note: Please use `docker kill sb` to stop it.
 
-## About
-
-服务器负载测试工具SB(SRS Bench)：
-
-1. 模拟huge并发：2G内存就可以开300k连接。基于states-threads的协程。
-1. 支持HLS解析和测试，下载ts片后等待一个切片长度，模拟客户端。支持HLS点播和直播。执行程序：`./objs/sb_hls_load`
-1. 支持HTTP负载测试，所有并发重复下载一个http文件。可将80Gbps带宽测试的72Gbps。执行程序：`./objs/sb_http_load `
-1. 支持RTMP流播放测试，一个进程支持5k并发。执行程序：`./objs/sb_rtmp_load`
-1. 支持RTMP流推流测试，一个进程支持500个并发。执行程序：`./objs/sb_rtmp_publish`
-1. RTMP协议使用高性能服务器SRS([SimpleRtmpServer](https://github.com/ossrs/srs))的协议栈。
-
-注意：
-
-1. HTTP/HLS：依赖服务器Content-Length，不支持chunked方式(chunked时会把所有内容当做body一直读)。
-2. 所有程序都在Linux下运行，模拟客户端运行。
-3. 其他工具参考[srs-librtmp](https://github.com/ossrs/srs/wiki/v2_CN_SrsLibrtmp#srs-librtmp-examples)
-
-## Benchmarks
-
-TestEnvironment: 24CPU, 80Gbps Network, 16GB Memory<br/>
-Server: NGINX HLS<br/>
-Result: 90% bandwith, 72Gbps
-
 <pre>
 [root@dell-server ~]# dstat
 ----total-cpu-usage---- -dsk/total- -net/total- ---paging-- ---system--
@@ -158,6 +135,4 @@ usr sys idl wai hiq siq| read  writ| recv  send|  in   out | int   csw
   5   6  84   0   0   5|   0     0 |  73M   73M|   0     0 |2972   344 
   6   8  78   0   0   8|   0     0 | 115M  115M|   0     0 |2942   314 
   7   8  79   0   0   6|   0     0 | 147M  147M|   0     0 |2966   366
-</pre>
 
-Winlin 2014.12
