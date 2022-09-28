@@ -6,7 +6,7 @@ Build from source, then run RTMP benchmark:
 
 ```
 git clone https://github.com/SmurfManX/hls-benchmark.git &&
-cd srs-bench && ./configure && make &&
+cd hls-benchmark && ./configure && make &&
 ./objs/sb_rtmp_load -c 1 -r rtmp://127.0.0.1:1935/live/livestream
 ```
 
